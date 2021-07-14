@@ -31,6 +31,14 @@ print("Election Results\n-------------------------")
 print(f"Total Votes: {total_votes}")
 print("-------------------------")
 
+# Create and open election_results.txt
+election_results_location = pathlib.Path("Analysis/election_results.txt")
+election_results_txt = open(election_results_location, "w")
+
+# Write "Election Results" and total votes to election_results.txt
+election_results_txt.write("Election Results\n-------------------------\n")
+election_results_txt.write(f"Total Votes: {total_votes}\n")
+election_results_txt.write("-------------------------\n")
 
 # Put names of candidates in a list
 def candidates_in_election(candidates):
@@ -79,52 +87,26 @@ for i in range(len(candidate_roster)):
     # Print election results for each candidate
     print(f"{candidate_roster[i]}: {current_percentage_formatted} ({current_vote_count})")
 
+    # Write election results for each candidate to election_results.txt
+    election_results_txt.write(f"{candidate_roster[i]}: {current_percentage_formatted} ({current_vote_count})\n")
+
 # Print dividing line
 print("-------------------------")
+
+# Write dividing line to election_results.txt
+election_results_txt.write("-------------------------\n")
 
 # Determine the winner of the election by popular vote
 election_winner_votes = max(vote_tally)
 election_winner_index = vote_tally.index(election_winner_votes)
 election_winner_name = candidate_roster[election_winner_index]
 
+# Print the winner of the elction
 print(f"Winner: {election_winner_name}")
 print("-------------------------")
 
+# Write the winer of the elction to election_results.txt
+election_results_txt.write(f"Winner: {election_winner_name}\n")
+election_results_txt.write("-------------------------")
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# for vote in range(len(candidate_voted_for)):
-#     if candidate_voted_for[vote] == candidate0_name:
-#         candidate0_votes = candidate0_votes +1
-#     elif candidate_voted_for[vote] == candidate1_name:
-#         candidate1_votes = candidate1_votes +1
-#     elif candidate_voted_for[vote] == candidate2_name:
-#         candidate2_votes = candidate2_votes +1
-#     elif candidate_voted_for[vote] == candidate3_name:
-#         candidate3_votes = candidate3_votes +1
-
-# print("Election Results\n-------------------------")
-# print(f"Total Votes: {total_votes}")
-# print("-------------------------")
-# print(f"{candidate0_name}: ({candidate0_votes})")
-# print(f"{candidate1_name}: ({candidate1_votes})")
-# print(f"{candidate2_name}: ({candidate2_votes})")
-# print(f"{candidate3_name}: ({candidate3_votes})")
-# print(vote_tally)
+election_results_txt.close
